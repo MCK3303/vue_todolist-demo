@@ -10,7 +10,41 @@
     
     <script>
         // 模拟 获取用户数据 订单数据 商品数据
-
+        function getUsers(){
+            setTimeout(()=>{
+                let data = '用户数据';
+                // next()括号中传入的参数 是作为该模块的返回值
+                iter.next(data);
+            },1000)
+        }
+        function getOrders(){
+            setTimeout(()=>{
+                let data = '订单数据';
+                iter.next(data);
+            },1000)
+        }
+        function getItems(){
+            setTimeout(()=>{
+                let data = '商品数据';
+                iter.next(data);
+            },1000)
+        }
+        // 定义生成器函数↓
+        function *gen(){
+            let users = yield getUsers();
+            // 该yield语句调用的getUsers()中，next()括号中是该方法的返回值data'用户数据'
+            // 输出'用户数据'↓ 
+            console.log(users);
+            let orders = yield getOrders();
+            // 输出'订单数据'↓ 
+            console.log(orders);
+            let items = yield getItems();
+            // 输出'商品数据'↓ 
+            console.log(items);
+        }
+        let iter = gen();
+        // 调用生成器next() 进入
+        iter.next();
 
     </script>
 </body>
