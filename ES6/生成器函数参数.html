@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 生成器函数参数 -->
+    <script>
+        function *gen(arg){
+            // 第一个next() 执行下面两行代码
+            console.log(arg);
+            let one = yield 111;
+            // 第二个next()↓ 传入了参数
+            // 第二个next传入的参数作为第一个yield的返回值，所以看console.log(one)是输出第二个next的参数
+            console.log(one);
+            let two = yield 222;
+
+            let three = yield 333;
+        
+        }
+        let iterator = gen('mck-arg');
+        // 调用generator的next方法 输出对象的value是yield后面的值
+        console.log(iterator.next());
+        console.log(iterator.next('ck9a'));
+
+
+
+
+    </script>
+</body>
+</html>

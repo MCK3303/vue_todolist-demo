@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 异步编程 比如文件操作 网络操作（ajax，request） 数据库操作
+        // 实例需求：1s后控制台输出1 2s后再输出2 3s后再输出3
+        // 回调地狱
+
+        // 任务1/任务2/任务3 ↓
+        function one(){
+            setTimeout(()=>{
+                console.log('任务1执行');
+                // 定时器里调用生成器.next() 这样执行完第一个任务后会再开启下一个任务
+                iter.next();
+            },1000);
+            
+        }
+        function two(){
+            setTimeout(()=>{
+                console.log('任务2执行');
+                iter.next();
+            },2000);
+            
+        }
+        function three(){
+            setTimeout(()=>{
+                console.log('任务3执行');
+                iter.next();
+            },3000);
+        }
+        
+        // 生成器函数声明↓
+        function *gen(){
+            yield one();
+            yield two();
+            yield three();
+        }
+        // 调用生成器函数
+        let iter = gen();
+        iter.next();
+
+    </script>
+</body>
+</html>

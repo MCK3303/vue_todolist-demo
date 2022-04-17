@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const arr = ['mck','ck9a','AE_'];
+        // arr[Symbol.iterator]() 输出的是一个数组迭代器Array Iterator{}
+        let diedaiqi = arr[Symbol.iterator]();
+        console.log(diedaiqi.next());//{value: 'mck', done: false}
+        console.log(diedaiqi.next());//{value: 'ck9a', done: false}
+        console.log(diedaiqi.next());//{value: 'AE_', done: false}
+
+        
+        // 分析一下为什么刚刚那样写不行↓
+        // let diedaiqi2 = arr[Symbol.iterator]().next();
+        // // 连着三个都是 {value: 'mck', done: false} 为什么呢
+        // // 因为已经把next()运行过的结果保存在了diedaiqi，下面只是把结果输出了3次而已
+        // console.log(diedaiqi)
+        // console.log(diedaiqi)
+        // console.log(diedaiqi)
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const ddqbl = {
+            name:'mck',
+            hobbys:[
+                'car',
+                'code',
+                'gaming',
+                'watch porn'
+            ],
+            // 引入Symbol.iterator接口方法↓
+            [Symbol.iterator](){
+                let index = 0;
+                // 保存this变量
+                let _this = this;
+                // 方法需要返回的是一个包含value和done属性的对象，不然会报错Result of the Symbol.iterator method is not an object
+                return{
+                    // return需要有一个next方法，不然会报错undefined is not a function
+                    next:function(){
+                        // 也是需要有返回对象
+                        // 如果索引index小于遍历对象的长度，那就继续遍历吧（done:false）表示没遍历完↓
+                        if(index<_this.hobbys.length){
+                            const result = {value:_this.hobbys[index],done:false};
+                            index++;
+                            return result;
+                        }else{
+
+                            return {value:'已经遍历完咯',done:true}
+                        }
+                }
+            }
+        }
+    }
+        // 假如需求 要用for...of遍历ddqbl（迭代器遍历）
+        // 直接for(let v of ddqbl)是不行的 会报错ddqbl is not iterable↓
+        // 所以如果要自定义遍历这个对象 就要加上[Symbol.iterator]()接口 如第21行
+        for (let v of ddqbl){
+            console.log(v)
+        }
+
+    </script>
+</body>
+</html>
