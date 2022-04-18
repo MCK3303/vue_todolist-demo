@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const p = new Promise(function(resolve,reject){
+            setTimeout(()=>{
+                let data ='数据库传来的数据';
+                //调用resolve Promise对象状态为成功
+                resolve(data);
+
+                let err = 'ERROR 01';
+                // 调用reject Promise对象状态为失败
+                reject(err);
+            },2000)
+
+        });
+
+        p.then(function(val){
+            // resolve 成功状态 进入then第一个回调函数↓
+            console.log('成功接收 '+val);
+        },function(error){
+            // reject 失败状态 进入then第二个回调函数↓
+            console.log('接收失败 '+error);
+        })
+    </script>
+</body>
+</html>
